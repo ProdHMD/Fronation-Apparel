@@ -1,0 +1,250 @@
+/** HTML, body */
+html {
+    overflow: hidden;
+    font-family: $sf_pro_text;
+    user-select: none;
+    line-height: normal;
+}
+
+/** App container */
+#app {
+    position: relative;
+    overflow: hidden;
+    background-color: $white;
+    min-height: 100vh;
+
+    &::before {
+        content: '';
+        display: block;
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        opacity: 0.75;
+        background-image: url('~@images/fronation-bg.jpeg');
+        background-repeat: repeat;
+        background-position: 50% 0;
+        background-size: cover;
+    }
+
+    /** Content container */
+    .main {
+        position: relative;
+        padding: 7.5vh 0 0;
+        height: 100vh;
+        overflow: hidden;
+        color: $black;
+        font-family: $sf_pro_text;
+
+        @include media-breakpoint-down(sm) {
+            padding-top: 1rem;
+        }
+
+        /** If logged in, fix height */
+        body.logged-in & {
+            height: calc(100vh - 32px);
+
+            @include media-breakpoint-down(wpmd) {
+                height: calc(100vh - 46px);
+            }
+        }
+
+        /** Container with hidden scrollbar */
+        #container {
+            max-height: 100%;
+
+            &::-webkit-scrollbar {
+                display: none;
+            }
+
+            .page-container {
+                align-items: center;
+
+                #main-content {
+                    #content {
+                        > :last-child {
+                            padding-bottom: 25vh;
+
+                            @include media-breakpoint-down(sm) {
+                                padding-bottom: 50vh;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        /** Basic link styling */
+        a:not(.woocommerce-product-gallery__trigger) {
+            color: $black;
+            text-decoration: none;
+            position: relative;
+
+            &:not(.button,.remove,.woocommerce-product-gallery__trigger)::before {
+                content: '';
+                position: absolute;
+                bottom: 1px;
+                left: 0;
+                width: 0;
+                height: 1.5px;
+                background-color: $black;
+                transition: 0.2s ease-in-out all;
+            }
+
+            &:hover {
+                transition: 0.2s ease-in-out all;
+
+                &:not(.button,.remove,.woocommerce-product-gallery__trigger)::before {
+                    width: 100%;
+                    transition: 0.2s ease-in-out all;
+                }
+            }
+
+            &.button {
+                background-color: $black;
+                color: $white;
+                font-weight: 400;
+                border-radius: 0;
+                transition: 0.2s ease-in-out all;
+
+                @include text_size_24;
+
+                &:hover {
+                    background-color: $dark_grey;
+                    text-decoration: none;
+                    transition: 0.2s ease-in-out all;
+                }
+            }
+        }
+
+        button {
+            &.button {
+                background-color: $black;
+                color: $white;
+                font-weight: 400;
+                border-radius: 0;
+                transition: 0.2s ease-in-out all;
+
+                @include text_size_24;
+
+                &.wc-backward {
+                    &::before {
+                        font: var(--fa-font-regular);
+                        font-weight: 400;
+                        content: "\f060";
+                    }
+                }
+
+                &:hover {
+                    background-color: $dark_grey;
+                    text-decoration: none;
+                    transition: 0.2s ease-in-out all;
+                }
+            }
+        }
+
+        /** Basic heading styling */
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6 {
+            font-family: $sf_pro_text;
+
+            strong {
+                color: $black;
+            }
+        }
+
+        /** Basic form styling */
+        form {
+            .form-row {
+                position: relative;
+                padding: 0;
+                padding-bottom: 1rem;
+
+                > label {
+                    position: absolute;
+                    top: 0;
+                    bottom: 0;
+                    left: 0;
+                    padding: 0 1rem;
+                    margin-bottom: 0;
+                    display: flex;
+                    align-items: center;
+                    width: auto;
+                    min-width: auto;
+                    max-width: fit-content;
+                    max-height: 50px;
+                    z-index: 1;
+                    opacity: 1;
+                    transition: 0.2s ease-in-out all;
+
+                    &.focused {
+                        opacity: 0;
+                        transition: 0.2s ease-in-out all;
+                    }
+                }
+
+                .woocommerce-input-wrapper {
+                    .input-text {
+                        min-height: 50px;
+                        border-radius: 0;
+                        border: 1px solid $grey;
+                        padding: 0 1rem;
+                    }
+
+                    .select2-container {
+                        min-height: 50px;
+
+                        .selection {
+                            display: block;
+                            min-height: 50px;
+                            border-radius: 0;
+                            border: 1px solid $grey;
+                            padding: 0;
+
+                            .select2-selection--single {
+                                min-height: 50px;
+                                border-radius: 0;
+                                border: 1px solid $grey;
+                                padding: 0 1rem;
+
+                                .select2-selection__rendered {
+                                    min-height: 50px;
+                                    line-height: 50px;
+                                    color: $black;
+                                    padding-left: 0;
+                                }
+
+                                .select2-selection__arrow {
+                                    min-height: 50px;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+/** Select dropdown */
+body {
+    > .select2-container--open {
+        font-family: $sf_pro_text;
+        
+        .select2-search--dropdown {
+            .select2-search__field {
+                border: 1px solid $grey;
+                padding: 0 1rem;
+            }
+        }
+
+        .select2-results__option {
+            padding: 0.5rem 1rem;
+        }
+    }
+}

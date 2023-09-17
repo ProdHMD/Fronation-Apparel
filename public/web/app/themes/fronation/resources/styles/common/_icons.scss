@@ -1,0 +1,23 @@
+@mixin cart_height {
+    min-height: 2.25rem;
+
+    @include media-breakpoint-down(lg) {
+        min-height: 2rem;
+    }
+
+    @include media-breakpoint-down(sm) {
+        min-height: 1.75rem;
+    }
+}
+
+@mixin socials_width {
+    max-width: 1.5rem;
+
+    @include media-breakpoint-down(lg) {
+        max-width: 1.125rem;
+    }
+
+    @include media-breakpoint-down(sm) {
+        max-width: 1rem;
+    }
+}

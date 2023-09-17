@@ -1,0 +1,61 @@
+/** About page */
+.main {
+    &#about {
+        padding: 0;
+        display: flex;
+        align-items: center;
+
+        #container {
+            .page-container {
+                #main-content {
+                    #content {
+                        > :last-child {
+                            padding-bottom: 0;
+
+                            @include media-breakpoint-down(sm) {
+                                padding-bottom: 35vh;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        #about-container {
+            #main-content {
+                #content {
+                    #image {
+                        display: flex;
+                        flex-direction: column;
+                        justify-content: center;
+                        align-items: center;
+                    }
+                    
+                    #text {
+                        display: flex;
+                        flex-direction: column;
+                        justify-content: center;
+
+                        @include media-breakpoint-down(sm) {
+                            margin-top: 1rem;
+                        }
+
+                        h1 {
+                            font-weight: bold;
+                            text-transform: uppercase;
+
+                            @include text_size_48;
+                        }
+
+                        h2 {
+                            font-weight: bold;
+                            text-transform: uppercase;
+
+                            @include text_size_36;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

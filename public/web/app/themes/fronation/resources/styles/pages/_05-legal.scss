@@ -1,0 +1,86 @@
+/** Legal pages */
+.main {
+    /** Terms and conditions page */
+    &#terms-conditions {
+        #container {
+            .page-container {
+                #main-content {
+                    #content {
+                        > :last-child {
+                            padding-bottom: 35vh;
+                        }
+                    }
+                }
+            }
+        }
+
+        #main-content {
+            #text {
+                h1 {
+                    font-weight: bold;
+                    text-transform: uppercase;
+                    text-align: center;
+                    padding: 2rem 0;
+
+                    @include text_size_64;
+                }
+            }
+        }
+    }
+
+    /** Privacy policy page */
+    &#privacy-policy {
+        #container {
+            .page-container {
+                #main-content {
+                    #content {
+                        > :last-child {
+                            padding-bottom: 30vh;
+                        }
+                    }
+                }
+            }
+        }
+
+        #main-content {
+            #text {
+                h1 {
+                    font-weight: bold;
+                    text-transform: uppercase;
+                    text-align: center;
+                    padding: 2rem 0;
+
+                    @include text_size_64;
+                }
+            }
+        }
+    }
+
+    /** Refunds and returns page */
+    &#refund_returns {
+        #container {
+            .page-container {
+                #main-content {
+                    #content {
+                        > :last-child {
+                            padding-bottom: 30vh;
+                        }
+                    }
+                }
+            }
+        }
+
+        #main-content {
+            #text {
+                h1 {
+                    font-weight: bold;
+                    text-transform: uppercase;
+                    text-align: center;
+                    padding: 2rem 0;
+
+                    @include text_size_64;
+                }
+            }
+        }
+    }
+}
