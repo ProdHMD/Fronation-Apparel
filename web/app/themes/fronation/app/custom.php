@@ -34,3 +34,20 @@ if (function_exists('acf_add_options_page')) {
 		)
 	);
 }
+
+/**
+ * Add login logo
+ */
+function my_login_logo() { ?>
+    <style type="text/css">
+        #login h1 a, .login h1 a {
+            width: 100%;
+            height: auto;
+            min-height: 100px;
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-image: url('/app/themes/fronation/resources/images/fronation-header-logo-rgb.png') !important;
+        }
+    </style>
+<?php }
+add_action( 'login_enqueue_scripts', 'my_login_logo' );
