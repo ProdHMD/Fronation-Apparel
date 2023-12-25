@@ -1,45 +1,62 @@
-# Fronation Apparel
+<p align="center">
+  <a href="https://roots.io/bedrock/">
+    <img alt="Bedrock" src="https://cdn.roots.io/app/uploads/logo-bedrock.svg" height="100">
+  </a>
+</p>
 
-Website for https://fronationapparel.com built under the Bedrock 1.22.0 and Sage 10.5.1.
+<p align="center">
+  <a href="https://packagist.org/packages/roots/bedrock">
+    <img alt="Packagist Installs" src="https://img.shields.io/packagist/dt/roots/bedrock?label=projects%20created&colorB=2b3072&colorA=525ddc&style=flat-square">
+  </a>
 
-Please follow the installation methods at https://roots.io/bedrock/docs/deployment/ if not using Trellis.
-Please follow the installation methods at https://roots.io/sage/docs/installation/ if reinstalling on another server.
+  <a href="https://packagist.org/packages/roots/wordpress">
+    <img alt="roots/wordpress Packagist Downloads" src="https://img.shields.io/packagist/dt/roots/wordpress?label=roots%2Fwordpress%20downloads&logo=roots&logoColor=white&colorB=2b3072&colorA=525ddc&style=flat-square">
+  </a>
+  
+  <img src="https://img.shields.io/badge/dynamic/json.svg?url=https://raw.githubusercontent.com/roots/bedrock/master/composer.json&label=wordpress&logo=roots&logoColor=white&query=$.require[%22roots/wordpress%22]&colorB=2b3072&colorA=525ddc&style=flat-square">
 
-## Step 1 - Install Bedrock
+  <a href="https://github.com/roots/bedrock/actions/workflows/ci.yml">
+    <img alt="Build Status" src="https://img.shields.io/github/actions/workflow/status/roots/bedrock/ci.yml?branch=master&logo=github&label=CI&style=flat-square">
+  </a>
 
-1. Globally install composer
-    1. `sudo apt update`
-    2. `sudo apt install wget php-cli php-zip unzip`
-    3. `wget -O composer-setup.php https://getcomposer.org/installer`
-    4. `sudo php composer-setup.php --install-dir=/usr/local/bin --filename=composer`
+  <a href="https://twitter.com/rootswp">
+    <img alt="Follow Roots" src="https://img.shields.io/badge/follow%20@rootswp-1da1f2?logo=twitter&logoColor=ffffff&message=&style=flat-square">
+  </a>
+</p>
 
-2. Run the following in the public directory:
-    1. `composer install`
+<p align="center">WordPress boilerplate with Composer, easier configuration, and an improved folder structure</p>
 
-## Step 2 - Install Sage
+<p align="center">
+  <a href="https://roots.io/bedrock/">Website</a> &nbsp;&nbsp; <a href="https://roots.io/bedrock/docs/installation/">Documentation</a> &nbsp;&nbsp; <a href="https://github.com/roots/bedrock/releases">Releases</a> &nbsp;&nbsp; <a href="https://discourse.roots.io/">Community</a>
+</p>
 
-1. Install the latest node.js LTS release
-    `volta install node`
+## Sponsors
 
-2. Globally install Yarn
-    `npm install --global yarn`
+Bedrock is an open source project and completely free to use. If you've benefited from our projects and would like to support our future endeavors, please consider [sponsoring Roots](https://github.com/sponsors/roots).
 
-3. Direct your terminal path to web/app/themes/fronation and run the following:
-    1. `yarn`
-    2. `yarn build`
-    3. `wp acorn optimize:clear`
+<div align="center">
+<a href="https://k-m.com/"><img src="https://cdn.roots.io/app/uploads/km-digital.svg" alt="KM Digital" width="120" height="90"></a> <a href="https://carrot.com/"><img src="https://cdn.roots.io/app/uploads/carrot.svg" alt="Carrot" width="120" height="90"></a> <a href="https://wordpress.com/"><img src="https://cdn.roots.io/app/uploads/wordpress.svg" alt="WordPress.com" width="120" height="90"></a> <a href="https://pantheon.io/"><img src="https://cdn.roots.io/app/uploads/pantheon.svg" alt="Pantheon" width="120" height="90"></a> <a href="https://worksitesafety.ca/careers/"><img src="https://cdn.roots.io/app/uploads/worksite-safety.svg" alt="Worksite Safety" width="120" height="90"></a> <a href="https://www.copiadigital.com/"><img src="https://cdn.roots.io/app/uploads/copia-digital.svg" alt="Copia Digital" width="120" height="90"></a> 
+</div>
 
-## Step 3 - Change enviornment variables
+## Overview
 
-1. Change the .env: https://roots.io/bedrock/docs/environment-variables/
+Bedrock is a WordPress boilerplate for developers that want to manage their projects with Git and Composer. Much of the philosophy behind Bedrock is inspired by the [Twelve-Factor App](http://12factor.net/) methodology, including the [WordPress specific version](https://roots.io/twelve-factor-wordpress/).
 
-2. Update the WP_ENV to production, staging, or development
+- Better folder structure
+- Dependency management with [Composer](https://getcomposer.org)
+- Easy WordPress configuration with environment specific files
+- Environment variables with [Dotenv](https://github.com/vlucas/phpdotenv)
+- Autoloader for mu-plugins (use regular plugins as mu-plugins)
+- Enhanced security (separated web root and secure passwords with [wp-password-bcrypt](https://github.com/roots/wp-password-bcrypt))
 
-*Warning: Do not create multiple installations of this on the same server!*
+## Getting Started
 
-## Notes
+See the [Bedrock installation documentation](https://roots.io/bedrock/docs/installation/).
 
-ACF Pro will need to be manually downloaded to the downloads folder of your local machine, then you can update thru composer
-Download link: https://www.gplvault.com/files/29102/
+## Stay Connected
 
-**Enjoy!**
+- Join us on Discord by [sponsoring us on GitHub](https://github.com/sponsors/roots)
+- Participate on [Roots Discourse](https://discourse.roots.io/)
+- Follow [@rootswp on Twitter](https://twitter.com/rootswp)
+- Read the [Roots Blog](https://roots.io/blog/)
+- Subscribe to the [Roots Newsletter](https://roots.io/newsletter/)
