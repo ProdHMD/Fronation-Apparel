@@ -45,7 +45,7 @@
       "type": "package",
       "package": {
         "name": "acf/acfpro",
-        "version": "6.5.3",
+        "version": "6.3.9",
         "type": "wordpress-plugin",
         "dist": {
           "url": "gplv-plugins/advanced-custom-fields-pro.zip",
@@ -69,7 +69,7 @@
       "type": "package",
       "package": {
         "name": "flintop/free-gifts-for-woocommerce",
-        "version": "11.4.0",
+        "version": "11.5.0",
         "type": "wordpress-plugin",
         "dist": {
           "url": "gplv-plugins/free-gifts-for-woocommerce.zip",
@@ -90,7 +90,7 @@
     "roots/wp-password-bcrypt": "1.1.0",
     "roots/acorn": "^3.1",
     "wpackagist-plugin/classic-editor": "^1.6",
-    "wpackagist-plugin/webp-converter-for-media": "^5.9",
+    "wpackagist-plugin/webp-converter-for-media": "^6.1",
     "gplvault/gplvault": "^5.0",
     "generoi/sage-woocommerce": "^1.0",
     "wpackagist-plugin/woocommerce": "^9.2",
