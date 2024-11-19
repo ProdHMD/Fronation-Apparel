@@ -69,7 +69,7 @@
       "type": "package",
       "package": {
         "name": "flintop/free-gifts-for-woocommerce",
-        "version": "11.5.0",
+        "version": "11.6.0",
         "type": "wordpress-plugin",
         "dist": {
           "url": "gplv-plugins/free-gifts-for-woocommerce.zip",
