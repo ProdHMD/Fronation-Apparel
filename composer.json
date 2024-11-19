@@ -109,7 +109,7 @@
     "wp-media/wp-rocket": "^3.15",
     "flintop/free-gifts-for-woocommerce": "^11.0",
     "acf/acfpro": "^6.3",
-    "wpackagist-theme/twentytwentyfour": "^1.2"
+    "wpackagist-theme/twentytwentyfive": "^1.0"
   },
   "require-dev": {
     "squizlabs/php_codesniffer": "^3.7.1",
