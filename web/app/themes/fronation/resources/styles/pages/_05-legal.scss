@@ -2,18 +2,6 @@
 .main {
     /** Terms and conditions page */
     &#terms-conditions {
-        #container {
-            .page-container {
-                #main-content {
-                    #content {
-                        > :last-child {
-                            padding-bottom: 35vh;
-                        }
-                    }
-                }
-            }
-        }
-
         #main-content {
             #text {
                 h1 {
@@ -30,18 +18,6 @@
 
     /** Privacy policy page */
     &#privacy-policy {
-        #container {
-            .page-container {
-                #main-content {
-                    #content {
-                        > :last-child {
-                            padding-bottom: 30vh;
-                        }
-                    }
-                }
-            }
-        }
-
         #main-content {
             #text {
                 h1 {
@@ -58,18 +34,6 @@
 
     /** Refunds and returns page */
     &#refund_returns {
-        #container {
-            .page-container {
-                #main-content {
-                    #content {
-                        > :last-child {
-                            padding-bottom: 30vh;
-                        }
-                    }
-                }
-            }
-        }
-
         #main-content {
             #text {
                 h1 {

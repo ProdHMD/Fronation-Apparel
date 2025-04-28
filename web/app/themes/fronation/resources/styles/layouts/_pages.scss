@@ -1,6 +1,5 @@
 /** HTML, body */
 html {
-    overflow: hidden;
     font-family: $sf_pro_text;
     user-select: none;
     line-height: normal;
@@ -8,8 +7,6 @@ html {
 
 /** App container */
 #app {
-    position: relative;
-    overflow: hidden;
     background-color: $white;
     min-height: 100vh;
 
@@ -30,16 +27,11 @@ html {
 
     /** Content container */
     .main {
-        position: relative;
-        padding: 7.5vh 0 0;
+        padding: 0;
         height: 100vh;
         overflow: hidden;
         color: $black;
         font-family: $sf_pro_text;
-
-        @include media-breakpoint-down(sm) {
-            padding-top: 1rem;
-        }
 
         /** If logged in, fix height */
         body.logged-in & {
@@ -59,18 +51,10 @@ html {
             }
 
             .page-container {
-                align-items: center;
-
                 #main-content {
-                    #content {
-                        > :last-child {
-                            padding-bottom: 25vh;
-
-                            @include media-breakpoint-down(sm) {
-                                padding-bottom: 50vh;
-                            }
-                        }
-                    }
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: center;
                 }
             }
         }

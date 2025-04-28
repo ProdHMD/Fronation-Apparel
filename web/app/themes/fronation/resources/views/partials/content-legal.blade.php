@@ -4,7 +4,7 @@
 ?>
 
 <div class="row page-container" id="<?php echo $post_slug; ?>-container" data-scroll-container>
-    <div class="col-md-8 offset-md-2" id="main-content" data-scroll-section>
+    <div class="col-md-10 offset-md-1" id="main-content" data-scroll-section>
         <div class="row" id="content" data-scroll>
             <div class="col-md-12" id="text">
                 <h1>{!! $title !!}</h1>

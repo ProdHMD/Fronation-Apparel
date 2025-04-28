@@ -33,7 +33,7 @@
       "type": "package",
       "package": {
         "name": "gplvault/gplvault",
-        "version": "5.0.1",
+        "version": "5.0.6",
         "type": "wordpress-plugin",
         "dist": {
           "url": "gplv-plugins/gplvault-updater.zip",
@@ -45,7 +45,7 @@
       "type": "package",
       "package": {
         "name": "acf/acfpro",
-        "version": "6.3.11",
+        "version": "6.4.0.1",
         "type": "wordpress-plugin",
         "dist": {
           "url": "gplv-plugins/advanced-custom-fields-pro.zip",
@@ -57,7 +57,7 @@
       "type": "package",
       "package": {
         "name": "wp-media/wp-rocket",
-        "version": "3.15.6",
+        "version": "3.18.3",
         "type": "wordpress-plugin",
         "dist": {
           "url": "gplv-plugins/wp-rocket.zip",
@@ -69,7 +69,7 @@
       "type": "package",
       "package": {
         "name": "flintop/free-gifts-for-woocommerce",
-        "version": "11.6.0",
+        "version": "11.9.0",
         "type": "wordpress-plugin",
         "dist": {
           "url": "gplv-plugins/free-gifts-for-woocommerce.zip",
@@ -99,12 +99,12 @@
     "wpackagist-plugin/wordpress-importer": "^0.8.1",
     "wpackagist-plugin/all-in-one-wp-migration": "^7.75",
     "wpackagist-plugin/akismet": "^5.1",
-    "wpackagist-plugin/jetpack": "^13.1",
-    "wpackagist-plugin/wordpress-seo": "^23.0",
-    "wpackagist-plugin/wordfence": "^7.9",
+    "wpackagist-plugin/jetpack": "^14.0",
+    "wpackagist-plugin/wordpress-seo": "^24.0",
+    "wpackagist-plugin/wordfence": "^8.0",
     "wpackagist-plugin/woocommerce-services": "^2.2",
-    "wpackagist-plugin/woocommerce-paypal-payments": "^2.1",
-    "wpackagist-plugin/woocommerce-payments": "^8.0",
+    "wpackagist-plugin/woocommerce-paypal-payments": "^3.0",
+    "wpackagist-plugin/woocommerce-payments": "^9.0",
     "wpackagist-plugin/bye-felicia": "^1.0",
     "wp-media/wp-rocket": "^3.15",
     "flintop/free-gifts-for-woocommerce": "^11.0",

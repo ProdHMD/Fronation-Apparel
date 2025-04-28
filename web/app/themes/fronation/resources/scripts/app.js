@@ -10,15 +10,11 @@ dom.watch();
 
 // Import custom modules
 import { pages } from './modules/pages.js';
-import { locomotive } from './modules/locomotive.js';
 
 /**
  * Application entrypoint
  */
 domReady(async () => {
-  // Init locomotiveJS
-  locomotive();
-
   // Init pagesJS
   pages();
 });

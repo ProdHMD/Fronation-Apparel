@@ -2,18 +2,6 @@
 .main {
     /** Shop page */
     &#shop {
-        #container {
-            .page-container {
-                #main-content {
-                    #content {
-                        > :last-child {
-                            padding-bottom: 35vh;
-                        }
-                    }
-                }
-            }
-        }
-
         #shop-container {
             #main-content {
                 .shop-title {
@@ -35,6 +23,8 @@
                 }
 
                 .products {
+                    margin-bottom: 0;
+
                     .product-container {
                         .product-inner {
                             display: flex;
@@ -93,7 +83,7 @@
                                 }
                             }
 
-                            .add_to_cart_button {
+                            .button {
                                 z-index: 2;
                                 background-color: transparent;
                                 color: $black;
@@ -134,116 +124,103 @@
 
     /** Cart page */
     &#cart {
-        #container {
-            .page-container {
-                #main-content {
-                    #content {
-                        > :last-child {
-                            padding-bottom: 50vh;
-
-                            @include media-breakpoint-down(sm) {
-                                padding-bottom: 50vh;
-                            }
-                        }
-                    }
-                }
-            }
-        }
-
         #cart-container {
             #main-content {
-                .page-header {
-                    .shop-title {
-                        font-weight: bold;
-                        text-transform: uppercase;
+                #content {
+                    .page-header {
+                        .shop-title {
+                            font-weight: bold;
+                            text-transform: uppercase;
+                            padding: 2rem 0;
 
-                        @include text_size_64;
-    
-                        .product-count {
-                            font-style: italic;
-                            font-weight: 400;
-                        }
-                    }
-                }
-
-                .woocommerce-cart-form {
-                    .shop_table {
-                        border: none;
-                        margin-top: 2rem;
-
-                        thead {
-                            tr {
-                                th {
-                                    color: $dark_grey;
-                                    font-weight: 400;
-                                    padding: 1rem 0;
-                                    border-bottom: 1px solid $dark_grey;
-                                }
+                            @include text_size_64;
+        
+                            .product-count {
+                                font-style: italic;
+                                font-weight: 400;
                             }
                         }
+                    }
 
-                        tbody {
-                            .cart_item {
-                                @include media-breakpoint-down(sm) {
-                                    background-color: $grey;
-                                    border-top: 1px solid $black;
-                                    border-bottom: 1px solid $light_grey;
-                                }
+                    .woocommerce-cart-form {
+                        .shop_table {
+                            border: none;
+                            margin-top: 2rem;
 
-                                td {
-                                    border: none;
-                                    padding: 1rem 0;
-
-                                    @include media-breakpoint-down(sm) {
-                                        padding: 0.5rem 0;
-                                        min-height: 40px;
+                            thead {
+                                tr {
+                                    th {
+                                        color: $dark_grey;
+                                        font-weight: 400;
+                                        padding: 1rem 0;
+                                        border-bottom: 1px solid $dark_grey;
                                     }
                                 }
                             }
-                        }
-
-                        .actions {
-                            border: none;
-
-                            .coupon {
-                                display: flex;
-    
-                                #coupon_code {
-                                    width: 50%;
-                                    min-height: 100%;
-                                    margin-right: 1rem;
-                                    border: 1px solid $grey;
-                                }
-
-                                .button {
-                                    font-size: 1.125rem;
-                                }
-                            }
-                        }
-                    }
-                }
-
-                .cart-collaterals {
-                    .cart_totals {
-                        h2 {
-                            display: none;
-                        }
-
-                        .shop_table {
-                            border: none;
 
                             tbody {
-                                tr {
-                                    th {
-                                        padding-left: 0;
+                                .cart_item {
+                                    @include media-breakpoint-down(sm) {
+                                        background-color: $grey;
+                                        border-top: 1px solid $black;
+                                        border-bottom: 1px solid $light_grey;
                                     }
 
                                     td {
-                                        padding-right: 0;
+                                        border: none;
+                                        padding: 1rem 0;
+
+                                        @include media-breakpoint-down(sm) {
+                                            padding: 0.5rem 0;
+                                            min-height: 40px;
+                                        }
+                                    }
+                                }
+                            }
+
+                            .actions {
+                                border: none;
+
+                                .coupon {
+                                    display: flex;
+        
+                                    #coupon_code {
+                                        width: 50%;
+                                        min-height: 100%;
+                                        margin-right: 1rem;
+                                        border: 1px solid $grey;
                                     }
 
-                                    &.order-total {
-                                        @include text_size_36;
+                                    .button {
+                                        font-size: 1.125rem;
+                                    }
+                                }
+                            }
+                        }
+                    }
+
+                    .cart-collaterals {
+                        .cart_totals {
+                            h2 {
+                                display: none;
+                            }
+
+                            .shop_table {
+                                border: none;
+
+                                tbody {
+                                    tr {
+                                        th {
+                                            padding-left: 0;
+                                        }
+
+                                        td {
+                                            padding-right: 0;
+                                        }
+
+                                        &.order-total {
+                                            @include text_size_36;
+                                        }
                                     }
                                 }
                             }
@@ -260,20 +237,6 @@
 
         #container {
             position: absolute;
-
-            .page-container {
-                #main-content {
-                    #content {
-                        > :last-child {
-                            padding-bottom: 55vh;
-
-                            @include media-breakpoint-down(sm) {
-                                padding-bottom: 55vh;
-                            }
-                        }
-                    }
-                }
-            }
         }
 
         #checkout-container {
@@ -281,6 +244,7 @@
                 .shop-title {
                     font-weight: bold;
                     text-transform: uppercase;
+                    padding: 2rem 0;
 
                     @include text_size_64;
 
