@@ -12,10 +12,10 @@
 
       <div class="socials">
         <ul class="social-list list-unstyled">
-          <?php if ($facebook) : ?><li class="social facebook"><a href="<?php echo $facebook; ?>" target="_blank"><x-fab-facebook /></a></li><?php endif; ?>
-          <?php if ($twitter) : ?><li class="social twitter"><a href="<?php echo $twitter; ?>" target="_blank"><x-fab-twitter /></a></li><?php endif; ?>
-          <?php if ($instagram) : ?><li class="social instagram"><a href="<?php echo $instagram; ?>" target="_blank"><x-fab-instagram /></a></li><?php endif; ?>
-          <?php if ($youtube) : ?><li class="social youtube "><a href="<?php echo $youtube; ?>" target="_blank"><x-fab-youtube /></a></li><?php endif; ?>
+          <?php if ($facebook) : ?><li class="social facebook"><a href="<?php echo $facebook; ?>" target="_blank"><i class="fab fa-facebook"></i></li><?php endif; ?>
+          <?php if ($twitter) : ?><li class="social twitter"><a href="<?php echo $twitter; ?>" target="_blank"><i class="fab fa-x"></i></a></li><?php endif; ?>
+          <?php if ($instagram) : ?><li class="social instagram"><a href="<?php echo $instagram; ?>" target="_blank"><i class="fab fa-instagram"></i></a></li><?php endif; ?>
+          <?php if ($youtube) : ?><li class="social youtube "><a href="<?php echo $youtube; ?>" target="_blank"><i class="fab fa-youtube"></i></a></li><?php endif; ?>
         </ul>
       </div>
     </nav>

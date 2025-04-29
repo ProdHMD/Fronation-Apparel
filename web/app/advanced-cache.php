@@ -8,9 +8,9 @@ defined( 'ABSPATH' ) || exit;
 
 define( 'WP_ROCKET_ADVANCED_CACHE', true );
 
-$rocket_path        = '/srv/users/serverpilot/apps/devbostore/web/app/plugins/wp-rocket/';
-$rocket_config_path = '/srv/users/serverpilot/apps/devbostore/web/app/wp-rocket-config/';
-$rocket_cache_path  = '/srv/users/serverpilot/apps/devbostore/web/app/cache/wp-rocket/';
+$rocket_path        = '/srv/users/serverpilot/apps/livebostore/web/app/plugins/wp-rocket/';
+$rocket_config_path = '/srv/users/serverpilot/apps/livebostore/web/app/wp-rocket-config/';
+$rocket_cache_path  = '/srv/users/serverpilot/apps/livebostore/web/app/cache/wp-rocket/';
 
 if (
 	version_compare( phpversion(), '7.3', '<' )

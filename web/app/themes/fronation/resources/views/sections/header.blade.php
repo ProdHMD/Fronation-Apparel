@@ -14,7 +14,7 @@
   <nav class="nav-shop" aria-label="Cart" id="shop-navigation">
     <a class="cart-button" href="/cart/">
       <span class="cart-count"><?php echo WC()->cart->get_cart_contents_count() ?></span>
-      <x-fas-bag-shopping />
+      <i class="fas fa-bag-shopping"></i>
     </a>
   </nav>
 </header>

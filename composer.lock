@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "f1c01bc69fd57627f8b53cf3e8db46c0",
+    "content-hash": "56e554e3716c1b303e4654a859ebad46",
     "packages": [
         {
             "name": "acf/acfpro",
