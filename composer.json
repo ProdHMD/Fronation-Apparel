@@ -100,7 +100,7 @@
     "wpackagist-plugin/all-in-one-wp-migration": "^7.75",
     "wpackagist-plugin/akismet": "^5.1",
     "wpackagist-plugin/jetpack": "^14.0",
-    "wpackagist-plugin/wordpress-seo": "^24.0",
+    "wpackagist-plugin/wordpress-seo": "^25.0",
     "wpackagist-plugin/wordfence": "^8.0",
     "wpackagist-plugin/woocommerce-services": "^2.2",
     "wpackagist-plugin/woocommerce-paypal-payments": "^3.0",
