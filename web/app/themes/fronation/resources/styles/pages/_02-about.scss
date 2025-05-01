@@ -1,37 +1,49 @@
 /** About page */
-.main {
-    &#about {
-        #about-container {
-            #main-content {
-                #content {
-                    #image {
-                        display: flex;
-                        flex-direction: column;
-                        justify-content: center;
-                        align-items: center;
+#app {
+    .main {
+        &#about {
+            #about-container {
+                #main-content {
+                    justify-content: center;
+
+                    > * {
+                        margin-top: 0;
+
+                        @include media-breakpoint-up(md) {
+                            margin-top: 0;
+                        }
                     }
-                    
-                    #text {
-                        display: flex;
-                        flex-direction: column;
-                        justify-content: center;
 
-                        @include media-breakpoint-down(sm) {
-                            margin-top: 1rem;
+                    #content {
+                        #image {
+                            display: flex;
+                            flex-direction: column;
+                            justify-content: center;
+                            align-items: center;
                         }
+                        
+                        #text {
+                            display: flex;
+                            flex-direction: column;
+                            justify-content: center;
 
-                        h1 {
-                            font-weight: bold;
-                            text-transform: uppercase;
+                            @include media-breakpoint-down(sm) {
+                                margin-top: 1rem;
+                            }
 
-                            @include text_size_48;
-                        }
+                            h1 {
+                                font-weight: bold;
+                                text-transform: uppercase;
 
-                        h2 {
-                            font-weight: bold;
-                            text-transform: uppercase;
+                                @include text_size_48;
+                            }
 
-                            @include text_size_36;
+                            h2 {
+                                font-weight: bold;
+                                text-transform: uppercase;
+
+                                @include text_size_36;
+                            }
                         }
                     }
                 }

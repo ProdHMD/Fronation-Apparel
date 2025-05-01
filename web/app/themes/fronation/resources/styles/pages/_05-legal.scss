@@ -1,48 +1,86 @@
 /** Legal pages */
-.main {
-    /** Terms and conditions page */
-    &#terms-conditions {
-        #main-content {
-            #text {
-                h1 {
-                    font-weight: bold;
-                    text-transform: uppercase;
-                    text-align: center;
-                    padding: 2rem 0;
+#app {
+    .main {
+        /** Terms and conditions page */
+        &#terms-conditions {
+            #container {
+                .page-container {
+                    #main-content {
+                        > * {
+                            margin-top: 0;
 
-                    @include text_size_64;
+                            @include media-breakpoint-up(md) {
+                                margin-top: 0;
+                            }
+                        }
+
+                        #text {
+                            h1 {
+                                font-weight: bold;
+                                text-transform: uppercase;
+                                text-align: center;
+                                padding: 2rem 0;
+
+                                @include text_size_64;
+                            }
+                        }
+                    }
                 }
             }
         }
-    }
 
-    /** Privacy policy page */
-    &#privacy-policy {
-        #main-content {
-            #text {
-                h1 {
-                    font-weight: bold;
-                    text-transform: uppercase;
-                    text-align: center;
-                    padding: 2rem 0;
+        /** Privacy policy page */
+        &#privacy-policy {
+            #container {
+                .page-container {
+                    #main-content {
+                        > * {
+                            margin-top: 0;
 
-                    @include text_size_64;
+                            @include media-breakpoint-up(md) {
+                                margin-top: 0;
+                            }
+                        }
+
+                        #text {
+                            h1 {
+                                font-weight: bold;
+                                text-transform: uppercase;
+                                text-align: center;
+                                padding: 2rem 0;
+
+                                @include text_size_64;
+                            }
+                        }
+                    }
                 }
             }
         }
-    }
 
-    /** Refunds and returns page */
-    &#refund_returns {
-        #main-content {
-            #text {
-                h1 {
-                    font-weight: bold;
-                    text-transform: uppercase;
-                    text-align: center;
-                    padding: 2rem 0;
+        /** Refunds and returns page */
+        &#refund_returns {
+            #container {
+                .page-container {
+                    #main-content {
+                        > * {
+                            margin-top: 0;
 
-                    @include text_size_64;
+                            @include media-breakpoint-up(md) {
+                                margin-top: 0;
+                            }
+                        }
+
+                        #text {
+                            h1 {
+                                font-weight: bold;
+                                text-transform: uppercase;
+                                text-align: center;
+                                padding: 2rem 0;
+
+                                @include text_size_64;
+                            }
+                        }
+                    }
                 }
             }
         }
