@@ -48,29 +48,55 @@ export const pages = async (err) => {
 
   // WooCommerce input focus/blur logic
   function formInputs() {
-    if ($('form').length) {
-      const updateLabel = function (input) {
-        const label = $(input).parent('.woocommerce-input-wrapper').prev('label:not(.checkbox)');
-        $(input).val() ? label.addClass('focused') : label.removeClass('focused');
-      };
-
-      $('form input').each(function () {
-        updateLabel(this);
-      });
-
-      $('form').on('blur change', 'input', function () {
-        updateLabel(this);
-      }).on('focus change', 'input', function () {
-        updateLabel(this);
-      });
-
-      $('form').on('click', 'label:not(.focused,.checkbox)', function () {
-        $(this).addClass('focused');
-        $(this).next().children('input').focus();
-      });
-    }
+    const $forms = $('form');
+  
+    if (!$forms.length) return;
+  
+    const updateLabel = function (element) {
+      const $el = $(element);
+      let $label = $el.closest('.woocommerce-input-wrapper').prev('label:not(.checkbox)');
+  
+      if (!$label.length) {
+        // Fallback for edit-account structure
+        $label = $el.prev('label:not(.checkbox)');
+      }
+  
+      const hasValue = $el.val() && $el.val().trim().length > 0;
+      const isPlaceholderOnly = $el.attr('placeholder') === $el.val();
+  
+      if (hasValue && !isPlaceholderOnly) {
+        $label.addClass('focused');
+      } else {
+        $label.removeClass('focused');
+      }
+    };
+  
+    // Initial state update
+    $forms.find('input, textarea, select').each(function () {
+      updateLabel(this);
+    });
+  
+    // Dynamic update on interaction
+    $forms.on('input blur focus change', 'input, textarea, select', function () {
+      updateLabel(this);
+    });
+  
+    // Click label to focus the correct field
+    $forms.on('click', 'label:not(.focused, .checkbox)', function () {
+      const $label = $(this);
+      let $field = $label.next('.woocommerce-input-wrapper').find('input, textarea, select');
+  
+      if (!$field.length) {
+        // Fallback for edit-account layout
+        $field = $label.next('input, textarea, select');
+      }
+  
+      $label.addClass('focused');
+      $field.trigger('focus');
+    });
   }
 
+  // Run on load
   formInputs();
 
   // WooCommerce checkout fix on autocomplete blur/input
