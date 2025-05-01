@@ -123,9 +123,13 @@
                     text-align: center;
                     text-decoration: none !important;
                     position: absolute;
-                    bottom: 8px;
                     left: 0;
                     right: 0;
+                    bottom: 6px;
+
+                    @include media-breakpoint-up(md) {
+                        bottom: 8px;
+                    }
 
                     @include text_size_18;
                 }
