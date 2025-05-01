@@ -17,8 +17,6 @@
 
 defined( 'ABSPATH' ) || exit; ?>
 
-
-
 <?php
 /**
  * My Account navigation.
