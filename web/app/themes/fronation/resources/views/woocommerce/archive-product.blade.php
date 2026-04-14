@@ -14,14 +14,23 @@ the readme will list any important changes.
 @version 3.4.0
 --}}
 
-<?php 
+@php
   $args = array(
     'post_type' => 'product',
-    'posts_per_page' => -1
+    'posts_per_page' => -1,
+    'tax_query'      => array(
+      'relation' => 'AND', // Ensures it respects other filters too
+      array(
+        'taxonomy' => 'product_visibility',
+        'field'    => 'name',
+        'terms'    => 'exclude-from-catalog',
+        'operator' => 'NOT IN',
+      ),
+    ),
   );
   $the_query = new WP_Query( $args );
   $product_count = $the_query->post_count;
-?>
+@endphp
 
 @extends('layouts.app')
 
