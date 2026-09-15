@@ -771,53 +771,53 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@fancyapps/ui@npm:^5.0.19":
-  version: 5.0.36
-  resolution: "@fancyapps/ui@npm:5.0.36"
-  checksum: 10/d66d0ad3fd9f6e33efa3515edcb355111d41506094e771cff8d30e8a0bb92fe8ee718fdce52bd51ed42fca2c2ae5a202ca7a8cb2e564bd6e28e1d21d27edd07e
+"@fancyapps/ui@npm:^6.1.15":
+  version: 6.1.15
+  resolution: "@fancyapps/ui@npm:6.1.15"
+  checksum: 10/ab43e285498ffc7cc80aea188c24bd5813ebae8584808c8589f17726b8b3bf687f5eb25fc6cb54ee4d4f605ca454fbf72b86a3d15d88823d937eaebd0577c2dc
   languageName: node
   linkType: hard
 
-"@fortawesome/fontawesome-common-types@npm:6.7.2":
-  version: 6.7.2
-  resolution: "@fortawesome/fontawesome-common-types@npm:6.7.2"
-  checksum: 10/3c2e938afe6f5939bd63181faaec7b062902d9ed970c75d6becb1fd8e5ca0ed937e7d1513bd7ae545da407d0682039e50730cdb3136b58656128838ea2c58ac0
+"@fortawesome/fontawesome-common-types@npm:7.3.1":
+  version: 7.3.1
+  resolution: "@fortawesome/fontawesome-common-types@npm:7.3.1"
+  checksum: 10/95f48fd99fd3d7806b6786213196f6629cf9562cd6d92c6560df6182a82c91bbcee15c4a51776b85bb675a2170c03d98fc59f213be98171ac1981ed9b54d8965
   languageName: node
   linkType: hard
 
-"@fortawesome/fontawesome-svg-core@npm:^6.4.0":
-  version: 6.7.2
-  resolution: "@fortawesome/fontawesome-svg-core@npm:6.7.2"
+"@fortawesome/fontawesome-svg-core@npm:^7.3.1":
+  version: 7.3.1
+  resolution: "@fortawesome/fontawesome-svg-core@npm:7.3.1"
   dependencies:
-    "@fortawesome/fontawesome-common-types": "npm:6.7.2"
-  checksum: 10/a3767631329aaa8c1bfafc9470718628533ceb42365774cd0c121477e0f3125f3cce4c2447058deee2874829ce11aa7a3fe183b0000bad81cf5ed0449c8470ef
+    "@fortawesome/fontawesome-common-types": "npm:7.3.1"
+  checksum: 10/cb79848909fd7dfc55785090fb798055fc3ef42fd04ef66660050f07bcd2d4448e64fd7f315198757dba41d84213e728cab28bb85ff7766829a6f5951044fd3b
   languageName: node
   linkType: hard
 
-"@fortawesome/free-brands-svg-icons@npm:^6.4.0":
-  version: 6.7.2
-  resolution: "@fortawesome/free-brands-svg-icons@npm:6.7.2"
+"@fortawesome/free-brands-svg-icons@npm:^7.3.1":
+  version: 7.3.1
+  resolution: "@fortawesome/free-brands-svg-icons@npm:7.3.1"
   dependencies:
-    "@fortawesome/fontawesome-common-types": "npm:6.7.2"
-  checksum: 10/7dcbb389ccfee519d4639b992e65180ee4665bc0627e608a5d756c78acd50414f9a8d4a21a27e38f845c89cca33eb23bb468fb050c7764504659581e35e78b48
+    "@fortawesome/fontawesome-common-types": "npm:7.3.1"
+  checksum: 10/d1c3641f09924a29e827c7afedc849c85733f629e9f039bf9680d9f4dce84f40d14a5ff13f801ce16bff3cebd71b799e71cd4de96f97769b30a538c69e088eae
   languageName: node
   linkType: hard
 
-"@fortawesome/free-regular-svg-icons@npm:^6.4.0":
-  version: 6.7.2
-  resolution: "@fortawesome/free-regular-svg-icons@npm:6.7.2"
+"@fortawesome/free-regular-svg-icons@npm:^7.3.1":
+  version: 7.3.1
+  resolution: "@fortawesome/free-regular-svg-icons@npm:7.3.1"
   dependencies:
-    "@fortawesome/fontawesome-common-types": "npm:6.7.2"
-  checksum: 10/f4385f19f04c07447c71943b2ae624d5b63e58d3f62583a12f75417e6e3e108a4df0d1466127c2c3f9fc2d7d68e3a6634c45b212ddf244721cb7461ba34c0f95
+    "@fortawesome/fontawesome-common-types": "npm:7.3.1"
+  checksum: 10/850f43f2c56c3077fee6b5b208a755e11001756c4b886a7d7618afbaed4f71696ad5e3230b83bf15006a632d9b2b4bf0dbc322f771863534708508cd9659e380
   languageName: node
   linkType: hard
 
-"@fortawesome/free-solid-svg-icons@npm:^6.4.0":
-  version: 6.7.2
-  resolution: "@fortawesome/free-solid-svg-icons@npm:6.7.2"
+"@fortawesome/free-solid-svg-icons@npm:^7.3.1":
+  version: 7.3.1
+  resolution: "@fortawesome/free-solid-svg-icons@npm:7.3.1"
   dependencies:
-    "@fortawesome/fontawesome-common-types": "npm:6.7.2"
-  checksum: 10/efcd90cd5d333995ff4012a9d77a8b23523e246fa418524edf08bb6af8b14db2ee0b08ee5f7460a86474d352af06e1a2581cc827ee3706e9c0e92e178b50e27f
+    "@fortawesome/fontawesome-common-types": "npm:7.3.1"
+  checksum: 10/5d827a943f4e18aaf3bf3ae328d6c0f600a4869f6d30c33210be3646312612c1d81cb6a945d7ba0fe69e39b31e68633013cfea63dea91dd0ab304b55e9fcd593
   languageName: node
   linkType: hard
 
@@ -1662,7 +1662,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@roots/bud@npm:6.24.0, @roots/bud@npm:latest":
+"@roots/bud@npm:6.24.0, @roots/bud@npm:^6.24.0":
   version: 6.24.0
   resolution: "@roots/bud@npm:6.24.0"
   dependencies:
@@ -2957,13 +2957,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"bezier-easing@npm:^2.1.0":
-  version: 2.1.0
-  resolution: "bezier-easing@npm:2.1.0"
-  checksum: 10/086dfd042ccf91c3a9de811b635381aa6580e9f83d1951ed4ce4d4007645d8f3cebd491cb6259719ce9320df213316b99dd8e39e78997944b1c252a1d4b424b5
-  languageName: node
-  linkType: hard
-
 "big-integer@npm:^1.6.44":
   version: 1.6.52
   resolution: "big-integer@npm:1.6.52"
@@ -2982,13 +2975,6 @@ __metadata:
   version: 2.3.0
   resolution: "binary-extensions@npm:2.3.0"
   checksum: 10/bcad01494e8a9283abf18c1b967af65ee79b0c6a9e6fcfafebfe91dbe6e0fc7272bafb73389e198b310516ae04f7ad17d79aacf6cb4c0d5d5202a7e2e52c7d98
-  languageName: node
-  linkType: hard
-
-"bindall-standalone@npm:^1.0.5":
-  version: 1.0.5
-  resolution: "bindall-standalone@npm:1.0.5"
-  checksum: 10/670a96a55a2609cbcf7f6a7066641e988d89467dbe479d1385fe12f3863253e81b7aab19d479fe718d81f8cd84fb40886bbe5b4b065e8220930f0fccc58465c0
   languageName: node
   linkType: hard
 
@@ -6567,10 +6553,21 @@ __metadata:
   languageName: node
   linkType: hard
 
-"lethargy@npm:^1.0.2":
-  version: 1.0.9
-  resolution: "lethargy@npm:1.0.9"
-  checksum: 10/6e02568584621b937f1d9642e041d17a4298f20829443109f429a7b4d536951255ed34940906cea03a2f5117723b99e95f92722ebdc1214f6feb85ee348ea146
+"lenis@npm:1.3.17":
+  version: 1.3.17
+  resolution: "lenis@npm:1.3.17"
+  peerDependencies:
+    "@nuxt/kit": ">=3.0.0"
+    react: ">=17.0.0"
+    vue: ">=3.0.0"
+  peerDependenciesMeta:
+    "@nuxt/kit":
+      optional: true
+    react:
+      optional: true
+    vue:
+      optional: true
+  checksum: 10/897f1f85ef3e8e5d210004ac9b9b320d85cf5ff154ecba250209ac76ccbb606be5d4990210b704a5824ed61dcbceadffeaea39de87ac5cf87e7cefe8e4ba3ed0
   languageName: node
   linkType: hard
 
@@ -6777,14 +6774,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"locomotive-scroll@npm:^4.1.4":
-  version: 4.1.4
-  resolution: "locomotive-scroll@npm:4.1.4"
+"locomotive-scroll@npm:^5.0.1":
+  version: 5.0.1
+  resolution: "locomotive-scroll@npm:5.0.1"
   dependencies:
-    bezier-easing: "npm:^2.1.0"
-    smoothscroll-polyfill: "npm:^0.4.4"
-    virtual-scroll: "npm:^1.5.2"
-  checksum: 10/b51091f0aec87d8d79f7f7d027d95ea5b4c92e9200790d23ded4dffb2e2c8af5b5b1a9406c5bd0a9c16dff89e36304bdcbe380f3685219a83b7cc8aef7094e32
+    lenis: "npm:1.3.17"
+  checksum: 10/c3f8eeae7a261c66db7fa5e183e618c0c9ca3e176d368af5cd5f21f2bef449c9f3862e35d30a59e1353507878442d98e0bc129401a2e3aeb41dbba8b2d05d9f4
   languageName: node
   linkType: hard
 
@@ -9468,13 +9463,13 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "sage@workspace:."
   dependencies:
-    "@fancyapps/ui": "npm:^5.0.19"
-    "@fortawesome/fontawesome-svg-core": "npm:^6.4.0"
-    "@fortawesome/free-brands-svg-icons": "npm:^6.4.0"
-    "@fortawesome/free-regular-svg-icons": "npm:^6.4.0"
-    "@fortawesome/free-solid-svg-icons": "npm:^6.4.0"
+    "@fancyapps/ui": "npm:^6.1.15"
+    "@fortawesome/fontawesome-svg-core": "npm:^7.3.1"
+    "@fortawesome/free-brands-svg-icons": "npm:^7.3.1"
+    "@fortawesome/free-regular-svg-icons": "npm:^7.3.1"
+    "@fortawesome/free-solid-svg-icons": "npm:^7.3.1"
     "@popperjs/core": "npm:^2.11.8"
-    "@roots/bud": "npm:latest"
+    "@roots/bud": "npm:^6.24.0"
     "@roots/bud-eslint": "npm:^6.24.0"
     "@roots/bud-prettier": "npm:^6.24.0"
     "@roots/bud-sass": "npm:^6.24.0"
@@ -9483,7 +9478,7 @@ __metadata:
     "@roots/sage": "npm:^6.24.0"
     bootstrap: "npm:^5.3.8"
     jquery-bridget: "npm:^3.0.1"
-    locomotive-scroll: "npm:^4.1.4"
+    locomotive-scroll: "npm:^5.0.1"
   languageName: unknown
   linkType: soft
 
@@ -9842,13 +9837,6 @@ __metadata:
   version: 4.2.0
   resolution: "smart-buffer@npm:4.2.0"
   checksum: 10/927484aa0b1640fd9473cee3e0a0bcad6fce93fd7bbc18bac9ad0c33686f5d2e2c422fba24b5899c184524af01e11dd2bd051c2bf2b07e47aff8ca72cbfc60d2
-  languageName: node
-  linkType: hard
-
-"smoothscroll-polyfill@npm:^0.4.4":
-  version: 0.4.4
-  resolution: "smoothscroll-polyfill@npm:0.4.4"
-  checksum: 10/f7e0506163f095dd391b7ce7e0a38fc0219d4be29f73f2f09defba73d268c76fefe9e8b2fea22ac816b708fd1f9ec3f6860aaf064cf8fc8904028d4a360272b3
   languageName: node
   linkType: hard
 
@@ -10494,13 +10482,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"tiny-emitter@npm:^1.0.0":
-  version: 1.2.0
-  resolution: "tiny-emitter@npm:1.2.0"
-  checksum: 10/60a12a86774eebc8bc164a272fa9b311f634feb5e60eedbf4f470c91bed3b06fe1588baae67b332beb5d67629145172d3c2ded4348de1f1369b46e71d2322a87
-  languageName: node
-  linkType: hard
-
 "tinyglobby@npm:^0.2.12":
   version: 0.2.15
   resolution: "tinyglobby@npm:0.2.15"
@@ -10897,18 +10878,6 @@ __metadata:
     "@types/unist": "npm:^3.0.0"
     vfile-message: "npm:^4.0.0"
   checksum: 10/a5a85293c9eb8787aa42e180edaef00c13199a493d6ed82fecf13ab29a68526850788e22434d77808ea6b17a74e03ff899b9b4711df5b9eee75afcddd7c2e1fb
-  languageName: node
-  linkType: hard
-
-"virtual-scroll@npm:^1.5.2":
-  version: 1.5.2
-  resolution: "virtual-scroll@npm:1.5.2"
-  dependencies:
-    bindall-standalone: "npm:^1.0.5"
-    lethargy: "npm:^1.0.2"
-    object-assign: "npm:^4.0.1"
-    tiny-emitter: "npm:^1.0.0"
-  checksum: 10/eef5545507f1d7da8167de6b1bcdb7ac5874497deacfd43db4eb2326ff2c905e2d95a16c34667e69fcd67690c2e83b3b3010fc5e3953da7e59894e1fcd761885
   languageName: node
   linkType: hard
 
