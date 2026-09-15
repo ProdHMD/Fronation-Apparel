@@ -30,15 +30,15 @@
     <div class="row" id="wrapper">
       <div class="col-md-12" id="content">
         <?php if (is_checkout() || is_account_page()) : ?>
-          <div class="row page-container" id="<?php echo $post_slug; ?>-container" data-scroll-container>
-            <div class="col-md-10 offset-md-1" id="main-content" data-scroll-section>
+          <div class="row page-container" id="<?php echo $post_slug; ?>-container">
+            <div class="col-md-10 offset-md-1" id="main-content">
               <div class="woocommerce-container" id="content" data-scroll>
                 <?php if (is_account_page()) : ?> 
                   <h1 class="shop-title">Your Fronation Account</h1>
                 <?php endif; ?>
         <?php elseif (is_cart()) : ?>
-          <div class="row page-container" id="<?php echo $post_slug; ?>-container" data-scroll-container>
-            <div class="col-md-10 offset-md-1" id="main-content" data-scroll-section>
+          <div class="row page-container" id="<?php echo $post_slug; ?>-container">
+            <div class="col-md-10 offset-md-1" id="main-content">
               <div class="woocommerce-container" id="content" data-scroll>
         <?php endif; ?>
         

@@ -35,8 +35,8 @@ the readme will list any important changes.
 @extends('layouts.app')
 
 @section('content')
-<div class="row page-container" id="shop-container" data-scroll-container>
-  <div class="col-md-12" id="main-content" data-scroll-section>
+<div class="row page-container" id="shop-container">
+  <div class="col-md-12" id="main-content">
     <div class="woocommerce-container" id="content" data-scroll>
       <h1 class="shop-title">All Fronation Merch <span class="product-count"><?php if (!empty($product_count)) { echo '(' . $product_count . ')'; } else { echo '(0)'; } ?></span></h1>
 

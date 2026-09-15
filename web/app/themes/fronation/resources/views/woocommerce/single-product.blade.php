@@ -17,8 +17,8 @@ the readme will list any important changes.
 @extends('layouts.app')
 
 @section('content')
-<div class="row page-container" id="single-product-container" data-scroll-container>
-  <div class="col-md-8 offset-md-2" id="main-content" data-scroll-section>
+<div class="row page-container" id="single-product-container">
+  <div class="col-md-8 offset-md-2" id="main-content">
     <div id="content" data-scroll>
       @while(have_posts())
         @php

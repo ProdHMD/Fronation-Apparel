@@ -4,70 +4,69 @@ let scrollInstance;
 
 export const scroll = (() => {
   let initialized = false;
+  let resizeTimeout;
 
   const initScroll = () => {
-    const scrollTarget = document.querySelector('[data-scroll-section]');
-    if (!scrollTarget || initialized) return;
+    const wrapper = document.querySelector('.page-container');
+    const content = wrapper?.querySelector(':scope > #main-content');
 
-    // Initialize Locomotive Scroll
+    if (!wrapper || !content || initialized) return;
+
+    wrapper.scrollTop = 0;
+
     scrollInstance = new LocomotiveScroll({
-      el: scrollTarget,
-      smooth: true,
-      reloadOnContextChange: true,
-      offset: [0, 0],
-      initPosition: { x: 0, y: 0 }, // Ensure scroll starts at top
-      mobile: {
-        smooth: true,
-        breakpoint: 0,
-      },
-      tablet: {
-        smooth: true,
-        breakpoint: 0,
+      lenisOptions: {
+        wrapper,
+        content,
+        eventsTarget: wrapper,
+        lerp: 0.05,
+        smoothWheel: true,
+        syncTouch: true,
       },
     });
 
     // Set initialization flag
     initialized = true;
 
-    // Reset transform on resize to prevent offset issues
-    window.addEventListener('resize', () => {
-      setTimeout(() => {
-        if (scrollInstance) {
-          scrollInstance.scrollTo(0, 0); // Reset scroll to top on resize
-          scrollInstance.update(); // Ensure scroll update
-        }
-      }, 100); // Wait for layout to settle
+    scrollInstance.lenisInstance?.scrollTo(0, {
+      immediate: true,
+      force: true,
     });
   };
 
   const updateScroll = () => {
-    if (scrollInstance && typeof scrollInstance.update === 'function') {
-      scrollInstance.update();
-    }
+    if (!scrollInstance) return;
+
+    scrollInstance.resize?.();
+    scrollInstance.lenisInstance?.resize?.();
   };
 
   const destroyScroll = () => {
-    if (scrollInstance && typeof scrollInstance.destroy === 'function') {
-      scrollInstance.destroy();
-      initialized = false;
-    }
+    if (!scrollInstance) return;
+
+    scrollInstance.destroy();
+
+    scrollInstance = null;
+    initialized = false;
   };
 
-  // Resize debounce
-  let resizeTimeout;
-  window.addEventListener('resize', () => {
+  const handleResize = () => {
     clearTimeout(resizeTimeout);
+
     resizeTimeout = setTimeout(() => {
-      destroyScroll();
-      initScroll();
       updateScroll();
     }, 300);
-  });
+  };
+
+  window.addEventListener('resize', handleResize);
 
   // Start the scroll on load
   window.addEventListener('load', () => {
     initScroll();
-    setTimeout(updateScroll, 100);
+
+    requestAnimationFrame(() => {
+      updateScroll();
+    });
   });
 
   return {
@@ -78,4 +77,10 @@ export const scroll = (() => {
   };
 })();
 
-import.meta.webpackHot?.accept(scroll);
+if (import.meta.webpackHot) {
+  import.meta.webpackHot.accept();
+
+  import.meta.webpackHot.dispose(() => {
+    scroll.destroy();
+  });
+}

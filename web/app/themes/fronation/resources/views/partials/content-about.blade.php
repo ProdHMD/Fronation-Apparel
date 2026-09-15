@@ -3,8 +3,8 @@
     $post_slug = $post->post_name;
 ?>
 
-<div class="row page-container" id="<?php echo $post_slug; ?>-container" data-scroll-container>
-    <div class="col-md-10 offset-md-1" id="main-content" data-scroll-section>
+<div class="row page-container" id="<?php echo $post_slug; ?>-container">
+    <div class="col-md-10 offset-md-1" id="main-content">
         <div class="row" id="content" data-scroll>
             <div class="col-md-5" id="image">
                 <?php echo get_the_post_thumbnail($post->ID, 'full', array('class'=>"img-fluid attachment-post-thumbnail center-block")); ?>

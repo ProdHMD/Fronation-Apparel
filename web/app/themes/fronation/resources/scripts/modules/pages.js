@@ -1,47 +1,33 @@
-import { scroll } from './locomotive.js';
-
 export const pages = async (err) => {
   if (err) {
     console.error(err);
   }
 
+  /**
+   * Set the main content height so it fills the available
+   * space between the header and footer.
+   */
   function setHeight() {
-    const viewHeight = $(window).height();
-    const headerHeight = $('#header').innerHeight();
-    const footerHeight = $('#footer').innerHeight();
-    const adminBarHeight = $('#wpadminbar').innerHeight();
-    const isLoggedIn = $('body').hasClass('logged-in');
+    const appHeight = $('#app').innerHeight();
+    const headerHeight = $('#header').outerHeight();
+    const footerHeight = $('#footer').outerHeight();
 
-    const offset = headerHeight + footerHeight + (isLoggedIn ? adminBarHeight : 0);
-    const adjustedHeight = viewHeight - offset;
+    // The app already accounts for the WordPress admin bar,
+    // so only subtract the header and footer here.
+    const adjustedHeight = Math.floor(
+      appHeight - headerHeight - footerHeight
+    );
 
-    // Set max-height for <main> element and adjust the last child padding
     $('main').css({
+      height: adjustedHeight,
       'max-height': adjustedHeight,
     });
-
-    // Add padding to the last child in the scrollable section
-    $('main .page-container > *:last-child').css({
-      'padding-bottom': offset,
-    });
-
-    // Update Locomotive Scroll layout after height change
-    updateLocomotive();
   }
 
-  // Update Locomotive Scroll after the height changes
-  function updateLocomotive() {
-    if (scroll && typeof scroll.update === 'function') {
-      setTimeout(() => {
-        scroll.update(); // Force scroll update
-      }, 100);
-    }
-  }
-
-  // Run on load
+  // Set the initial content height.
   setHeight();
 
-  // Re-run on resize
+  // Recalculate whenever the viewport changes.
   $(window).on('resize', function () {
     setHeight();
   });
