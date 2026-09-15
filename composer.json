@@ -33,7 +33,7 @@
       "type": "package",
       "package": {
         "name": "gplvault/gplvault",
-        "version": "5.3.3",
+        "version": "5.3.9",
         "type": "wordpress-plugin",
         "dist": {
           "url": "gplv-plugins/gplvault-updater.zip",
@@ -45,7 +45,7 @@
       "type": "package",
       "package": {
         "name": "acf/acfpro",
-        "version": "6.7.0.2",
+        "version": "6.8.10",
         "type": "wordpress-plugin",
         "dist": {
           "url": "gplv-plugins/advanced-custom-fields-pro.zip",
@@ -57,7 +57,7 @@
       "type": "package",
       "package": {
         "name": "wp-media/wp-rocket",
-        "version": "3.20.3",
+        "version": "3.23.3.3",
         "type": "wordpress-plugin",
         "dist": {
           "url": "gplv-plugins/wp-rocket.zip",
@@ -69,7 +69,7 @@
       "type": "package",
       "package": {
         "name": "flintop/free-gifts-for-woocommerce",
-        "version": "12.8.0",
+        "version": "13.7.0",
         "type": "wordpress-plugin",
         "dist": {
           "url": "gplv-plugins/free-gifts-for-woocommerce.zip",
@@ -85,7 +85,7 @@
     "oscarotero/env": "^2.1",
     "roots/bedrock-autoloader": "^1.0",
     "roots/bedrock-disallow-indexing": "^2.0",
-    "roots/wordpress": "^6.2.2",
+    "roots/wordpress": "^7.0",
     "roots/wp-config": "^1.0.0",
     "roots/wp-password-bcrypt": "1.1.0",
     "roots/acorn": "^3.1",
@@ -93,22 +93,22 @@
     "wpackagist-plugin/webp-converter-for-media": "^6.1",
     "gplvault/gplvault": "^5.0",
     "generoi/sage-woocommerce": "^1.0",
-    "wpackagist-plugin/woocommerce": "^10.4",
+    "wpackagist-plugin/woocommerce": "^11.0",
     "blade-ui-kit/blade-icons": "^1.8",
     "owenvoke/blade-fontawesome": "^2.4",
     "wpackagist-plugin/wordpress-importer": "^0.9",
     "wpackagist-plugin/all-in-one-wp-migration": "^7.75",
     "wpackagist-plugin/akismet": "^5.1",
-    "wpackagist-plugin/jetpack": "^15.0",
-    "wpackagist-plugin/wordpress-seo": "^26.0",
-    "wpackagist-plugin/wordfence": "^8.0",
+    "wpackagist-plugin/jetpack": "^16.0",
+    "wpackagist-plugin/wordpress-seo": "^28.0",
+    "wpackagist-plugin/wordfence": "^9.0",
     "wpackagist-plugin/woocommerce-services": "^3.3",
-    "wpackagist-plugin/woocommerce-paypal-payments": "^3.0",
-    "wpackagist-plugin/woocommerce-payments": "^10.0",
+    "wpackagist-plugin/woocommerce-paypal-payments": "^4.0",
+    "wpackagist-plugin/woocommerce-payments": "^11.0",
     "wpackagist-plugin/bye-felicia": "^1.0",
     "wp-media/wp-rocket": "^3.20",
-    "flintop/free-gifts-for-woocommerce": "^12.0",
-    "acf/acfpro": "^6.7",
+    "flintop/free-gifts-for-woocommerce": "^13.0",
+    "acf/acfpro": "^6.8",
     "wpackagist-theme/twentytwentyfive": "^1.0"
   },
   "require-dev": {
