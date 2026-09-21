@@ -81,7 +81,7 @@
       "type": "package",
       "package": {
         "name": "woocommerce/woocommerce-shipping-fedex",
-        "version": "4.8.0",
+        "version": "4.8.1",
         "type": "wordpress-plugin",
         "dist": {
           "url": "gplv-plugins/woocommerce-shipping-fedex.zip",
