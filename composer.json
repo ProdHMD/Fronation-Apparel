@@ -57,7 +57,7 @@
       "type": "package",
       "package": {
         "name": "wp-media/wp-rocket",
-        "version": "3.23.3.3",
+        "version": "3.23.5",
         "type": "wordpress-plugin",
         "dist": {
           "url": "gplv-plugins/wp-rocket.zip",
@@ -69,7 +69,7 @@
       "type": "package",
       "package": {
         "name": "flintop/free-gifts-for-woocommerce",
-        "version": "13.7.0",
+        "version": "13.8.0",
         "type": "wordpress-plugin",
         "dist": {
           "url": "gplv-plugins/free-gifts-for-woocommerce.zip",

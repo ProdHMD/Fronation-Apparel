@@ -100,7 +100,7 @@ jobs:
 # 3. BUILD SAGE (NODE + COMPOSER)
 ############################################################
   build-sage:
-    name: Build Sage Assets (Node 20.20.0)
+    name: Build Sage Assets (Node 24.21.0)
     needs: [sanity-and-derive, build-bedrock]
     runs-on: ubuntu-latest
 
@@ -118,7 +118,7 @@ jobs:
 
       - uses: actions/setup-node@v4
         with:
-          node-version: "20.20.0"
+          node-version: "24.21.0"
           package-manager-cache: false
 
       - name: Enable Yarn via Corepack
@@ -136,8 +136,6 @@ jobs:
 
       - name: Build Sage (fail fast)
         working-directory: ${{ needs.sanity-and-derive.outputs.theme_local_path }}
-        env:
-          NODE_ENV: production
         run: |
           composer install --prefer-dist --no-interaction --no-dev
           corepack yarn install --immutable
@@ -219,6 +217,35 @@ jobs:
             echo "- **Result**: Skipped deployment because dev path was not found."
           } >> $GITHUB_STEP_SUMMARY
           exit 0
+      
+      # Diagnostic #1
+      - name: Diagnostic — WAF before deployment
+        if: needs.sanity-and-derive.outputs.app_env == 'live'
+        run: |
+          ssh serverpilot@${{ secrets.SERVER_IP }} '
+            BASE="${{ needs.sanity-and-derive.outputs.deploy_path }}"
+            echo "===== WAF BEFORE DEPLOYMENT ====="
+            if [ -f "$BASE/web/wp/wordfence-waf.php" ]; then
+              echo "WAF EXISTS"
+              ls -la "$BASE/web/wp/wordfence-waf.php"
+            else
+              echo "WAF MISSING"
+            fi
+          '
+      # Diagnostic #2
+      - name: Diagnostic — WAF after source rsync
+        if: needs.sanity-and-derive.outputs.app_env == 'live'
+        run: |
+          ssh serverpilot@${{ secrets.SERVER_IP }} '
+            BASE="${{ needs.sanity-and-derive.outputs.deploy_path }}"
+            echo "===== WAF AFTER SOURCE RSYNC ====="
+            if [ -f "$BASE/web/wp/wordfence-waf.php" ]; then
+              echo "WAF EXISTS"
+              ls -la "$BASE/web/wp/wordfence-waf.php"
+            else
+              echo "WAF MISSING"
+            fi
+          '
 
       ############################################################
       # RSYNC TRACKED SOURCES (git-aware) + THEME BUILDS
@@ -303,6 +330,21 @@ jobs:
           rsync -azv --delete "$SRC_THEME/node_modules/" "$REMOTE:$THEME/node_modules/" || true
           rsync -azv --delete "$SRC_THEME/.yarn/"        "$REMOTE:$THEME/.yarn/" || true
 
+      # Diagnostic #2.5
+      - name: Diagnostic — WAF immediately before Bedrock Composer
+        if: needs.sanity-and-derive.outputs.app_env == 'live'
+        run: |
+          ssh serverpilot@${{ secrets.SERVER_IP }} '
+            BASE="${{ needs.sanity-and-derive.outputs.deploy_path }}"
+            echo "===== WAF IMMEDIATELY BEFORE COMPOSER ====="
+            if [ -f "$BASE/web/wp/wordfence-waf.php" ]; then
+              echo "WAF EXISTS"
+              ls -la "$BASE/web/wp/wordfence-waf.php"
+            else
+              echo "WAF MISSING"
+            fi
+          '
+
       ############################################################
       # SERVER-SIDE COMPOSER FOR BEDROCK (no vendor/.env rsync)
       # - Try --no-dev first (lean). If Blade Icons are required but missing,
@@ -348,6 +390,21 @@ jobs:
               echo "FALLBACK_FULL_INSTALL=0" > composer_fallback.env
             fi
           '
+      
+      # Diagnostic #3
+      - name: Diagnostic — WAF after Bedrock Composer
+        if: needs.sanity-and-derive.outputs.app_env == 'live'
+        run: |
+          ssh serverpilot@${{ secrets.SERVER_IP }} '
+            BASE="${{ needs.sanity-and-derive.outputs.deploy_path }}"
+            echo "===== WAF AFTER COMPOSER ====="
+            if [ -f "$BASE/web/wp/wordfence-waf.php" ]; then
+              echo "WAF EXISTS"
+              ls -la "$BASE/web/wp/wordfence-waf.php"
+            else
+              echo "WAF MISSING"
+            fi
+          '
 
       ############################################################
       # REFRESH ACORN DISCOVERY & CACHES (conditionally)
@@ -386,6 +443,20 @@ jobs:
               wp acorn optimize:clear || true
             else
               echo "wp acorn not available; skipping Acorn steps."
+            fi
+          '
+      # Diagnostic #4
+      - name: Diagnostic — WAF after Acorn
+        if: needs.sanity-and-derive.outputs.app_env == 'live'
+        run: |
+          ssh serverpilot@${{ secrets.SERVER_IP }} '
+            BASE="${{ needs.sanity-and-derive.outputs.deploy_path }}"
+            echo "===== WAF AFTER ACORN ====="
+            if [ -f "$BASE/web/wp/wordfence-waf.php" ]; then
+              echo "WAF EXISTS"
+              ls -la "$BASE/web/wp/wordfence-waf.php"
+            else
+              echo "WAF MISSING"
             fi
           '
 
