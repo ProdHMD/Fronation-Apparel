@@ -217,67 +217,22 @@ jobs:
             echo "- **Result**: Skipped deployment because dev path was not found."
           } >> $GITHUB_STEP_SUMMARY
           exit 0
-      
-      # Diagnostic #1
-      - name: Diagnostic — WAF before deployment
-        if: needs.sanity-and-derive.outputs.app_env == 'live'
-        run: |
-          ssh serverpilot@${{ secrets.SERVER_IP }} '
-            BASE="${{ needs.sanity-and-derive.outputs.deploy_path }}"
-            echo "===== WAF BEFORE DEPLOYMENT ====="
-            if [ -f "$BASE/web/wp/wordfence-waf.php" ]; then
-              echo "WAF EXISTS"
-              ls -la "$BASE/web/wp/wordfence-waf.php"
-            else
-              echo "WAF MISSING"
-            fi
-          '
-      # Diagnostic #2
-      - name: Diagnostic — WAF after source rsync
-        if: needs.sanity-and-derive.outputs.app_env == 'live'
-        run: |
-          ssh serverpilot@${{ secrets.SERVER_IP }} '
-            BASE="${{ needs.sanity-and-derive.outputs.deploy_path }}"
-            echo "===== WAF AFTER SOURCE RSYNC ====="
-            if [ -f "$BASE/web/wp/wordfence-waf.php" ]; then
-              echo "WAF EXISTS"
-              ls -la "$BASE/web/wp/wordfence-waf.php"
-            else
-              echo "WAF MISSING"
-            fi
-          '
 
       ############################################################
-      # RSYNC TRACKED SOURCES (git-aware) + THEME BUILDS
+      # RSYNC TRACKED SOURCES (git-aware)
+      # - Deploy only files tracked by Git.
+      # - Preserve server-managed Wordfence/WAF configuration.
       ############################################################
       - name: Deploy tracked sources (git-aware rsync)
         if: needs.sanity-and-derive.outputs.app_env == 'live' || steps.devpath.outputs.exists == 'true'
         run: |
           set -euxo pipefail
+
           REMOTE="serverpilot@${{ secrets.SERVER_IP }}"
           BASE="${{ needs.sanity-and-derive.outputs.deploy_path }}"
+
           ssh "$REMOTE" "mkdir -p '$BASE'"
 
-          # Preserve server-generated Wordfence WAF files outside the rsync tree.
-          # This is deterministic and does not rely on rsync protect-filter matching.
-          BACKUP_DIR="/tmp/wordfence-waf-${GITHUB_RUN_ID}-${GITHUB_RUN_ATTEMPT}"
-          ssh "$REMOTE" "set -e
-            rm -rf '$BACKUP_DIR'
-            mkdir -p '$BACKUP_DIR'
-            if [ -f '$BASE/web/wp/wordfence-waf.php' ]; then
-              mv '$BASE/web/wp/wordfence-waf.php' '$BACKUP_DIR/wordfence-waf.php'
-            fi
-            if [ -f '$BASE/.user.ini' ]; then
-              mv '$BASE/.user.ini' '$BACKUP_DIR/root.user.ini'
-            fi
-            if [ -f '$BASE/web/.user.ini' ]; then
-              mv '$BASE/web/.user.ini' '$BACKUP_DIR/web.user.ini'
-            fi
-          "
-
-          # Deploy exactly what's tracked in git (honors root + theme .gitignore).
-          # Capture rsync's status so Wordfence files are restored even if rsync fails.
-          set +e
           git ls-files -z \
             | rsync -azv --delete --from0 --files-from=- \
                 --filter='protect /.user.ini' \
@@ -330,58 +285,96 @@ jobs:
           rsync -azv --delete "$SRC_THEME/node_modules/" "$REMOTE:$THEME/node_modules/" || true
           rsync -azv --delete "$SRC_THEME/.yarn/"        "$REMOTE:$THEME/.yarn/" || true
 
-      # Diagnostic #2.5
-      - name: Diagnostic — WAF immediately before Bedrock Composer
-        if: needs.sanity-and-derive.outputs.app_env == 'live'
-        run: |
-          ssh serverpilot@${{ secrets.SERVER_IP }} '
-            BASE="${{ needs.sanity-and-derive.outputs.deploy_path }}"
-            echo "===== WAF IMMEDIATELY BEFORE COMPOSER ====="
-            if [ -f "$BASE/web/wp/wordfence-waf.php" ]; then
-              echo "WAF EXISTS"
-              ls -la "$BASE/web/wp/wordfence-waf.php"
-            else
-              echo "WAF MISSING"
-            fi
-          '
-
       ############################################################
-      # SERVER-SIDE COMPOSER FOR BEDROCK (no vendor/.env rsync)
-      # - Try --no-dev first (lean). If Blade Icons are required but missing,
-      #   fall back to full install to cover packages living under require-dev.
+      # SERVER-SIDE COMPOSER FOR BEDROCK
+      # - Preserve Wordfence WAF bootstrap across Composer installs.
+      # - Composer may replace web/wp when WordPress is installed/upgraded,
+      #   which removes the server-generated wordfence-waf.php file.
+      # - Restore the WAF even if Composer fails.
       ############################################################
-      - name: Install Bedrock Composer dependencies on server (with fallback)
+      - name: Install Bedrock Composer dependencies on server (with WAF preservation)
         if: needs.sanity-and-derive.outputs.app_env == 'live' || steps.devpath.outputs.exists == 'true'
         run: |
-          ssh serverpilot@${{ secrets.SERVER_IP }} bash -lc '
+          ssh serverpilot@${{ secrets.SERVER_IP }} bash -s <<'REMOTE_SCRIPT'
             set -euo pipefail
+
             BASE="${{ needs.sanity-and-derive.outputs.deploy_path }}"
+            WAF="$BASE/web/wp/wordfence-waf.php"
+            WAF_BACKUP="/tmp/wordfence-waf-${{ github.run_id }}-${{ github.run_attempt }}.php"
+
             cd "$BASE"
 
             export COMPOSER_ALLOW_SUPERUSER=1
             export COMPOSER_MEMORY_LIMIT=-1
 
+            ########################################################
+            # Preserve Wordfence WAF before Composer touches web/wp
+            ########################################################
+            WAF_PRESERVED=0
+
+            if [ -f "$WAF" ]; then
+              echo "Preserving Wordfence WAF before Composer..."
+              cp -p "$WAF" "$WAF_BACKUP"
+              WAF_PRESERVED=1
+
+              echo "WAF backup created:"
+              ls -la "$WAF_BACKUP"
+            else
+              echo "WARNING: Wordfence WAF was not present before Composer."
+            fi
+
+            ########################################################
+            # Restore WAF on every exit path
+            ########################################################
+            restore_waf() {
+              if [ "$WAF_PRESERVED" -eq 1 ] && [ -f "$WAF_BACKUP" ]; then
+                echo "Restoring Wordfence WAF after Composer..."
+
+                mkdir -p "$(dirname "$WAF")"
+                cp -p "$WAF_BACKUP" "$WAF"
+                rm -f "$WAF_BACKUP"
+
+                if [ ! -f "$WAF" ]; then
+                  echo "ERROR: Wordfence WAF restoration failed."
+                  return 1
+                fi
+
+                echo "Wordfence WAF restored:"
+                ls -la "$WAF"
+              fi
+            }
+
+            trap restore_waf EXIT
+
+            ########################################################
+            # Locate Composer
+            ########################################################
             if command -v composer >/dev/null 2>&1; then
               COMPOSER="composer"
             else
               mkdir -p "$HOME/bin"
-              php -r "copy(\"https://getcomposer.org/installer\", \"composer-setup.php\");"
+              php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"
               php composer-setup.php --install-dir="$HOME/bin" --filename=composer --quiet
               rm -f composer-setup.php
               COMPOSER="$HOME/bin/composer"
             fi
 
-            echo "Clearing Composer cache before deployment…"
-            $COMPOSER clear-cache
+            ########################################################
+            # Install Bedrock dependencies
+            ########################################################
+            echo "Clearing Composer cache before deployment..."
+            "$COMPOSER" clear-cache
 
-            echo "Running composer install --no-dev (first pass)…"
-            $COMPOSER install --no-dev --prefer-dist --no-interaction
+            echo "Running composer install --no-dev (first pass)..."
+            "$COMPOSER" install --no-dev --prefer-dist --no-interaction
 
             HAS_BLADE_ICONS="${{ steps.detect_blade_icons.outputs.has_blade_icons }}"
+
             if [ "$HAS_BLADE_ICONS" = "true" ]; then
-              if [ ! -d vendor/owenvoke/blade-fontawesome ] && [ ! -d vendor/blade-ui-kit/blade-icons ]; then
-                echo "Blade Icons/FontAwesome not present after --no-dev. Running full install…"
-                $COMPOSER install --prefer-dist --no-interaction
+              if [ ! -d vendor/owenvoke/blade-fontawesome ] && \
+                 [ ! -d vendor/blade-ui-kit/blade-icons ]; then
+                echo "Blade Icons/FontAwesome not present after --no-dev. Running full install..."
+                "$COMPOSER" install --prefer-dist --no-interaction
                 echo "FALLBACK_FULL_INSTALL=1" > composer_fallback.env
               else
                 echo "FALLBACK_FULL_INSTALL=0" > composer_fallback.env
@@ -389,22 +382,17 @@ jobs:
             else
               echo "FALLBACK_FULL_INSTALL=0" > composer_fallback.env
             fi
-          '
-      
-      # Diagnostic #3
-      - name: Diagnostic — WAF after Bedrock Composer
-        if: needs.sanity-and-derive.outputs.app_env == 'live'
-        run: |
-          ssh serverpilot@${{ secrets.SERVER_IP }} '
-            BASE="${{ needs.sanity-and-derive.outputs.deploy_path }}"
-            echo "===== WAF AFTER COMPOSER ====="
-            if [ -f "$BASE/web/wp/wordfence-waf.php" ]; then
-              echo "WAF EXISTS"
-              ls -la "$BASE/web/wp/wordfence-waf.php"
-            else
-              echo "WAF MISSING"
-            fi
-          '
+
+            ########################################################
+            # Restore now rather than waiting for shell exit
+            ########################################################
+            restore_waf
+
+            # Prevent the EXIT trap from performing a second restore.
+            trap - EXIT
+
+            echo "Bedrock Composer deployment complete."
+          REMOTE_SCRIPT
 
       ############################################################
       # REFRESH ACORN DISCOVERY & CACHES (conditionally)
@@ -413,17 +401,18 @@ jobs:
       - name: Refresh Acorn discovery & caches (conditional)
         if: needs.sanity-and-derive.outputs.app_env == 'live' || steps.devpath.outputs.exists == 'true'
         run: |
-          ssh serverpilot@${{ secrets.SERVER_IP }} bash -lc '
+          ssh serverpilot@${{ secrets.SERVER_IP }} bash -s <<'REMOTE_SCRIPT'
             set -euo pipefail
+
             BASE="${{ needs.sanity-and-derive.outputs.deploy_path }}"
             THEME_DIR="$BASE/web/app/themes/${{ env.THEME_NAME }}"
             ICONS_DIR="$THEME_DIR/resources/images/icons"
+
             cd "$BASE"
 
             if wp acorn --version >/dev/null 2>&1; then
               HAS_BLADE_ICONS="${{ steps.detect_blade_icons.outputs.has_blade_icons }}"
 
-              # Ensure icons dir exists only when Blade Icons are used
               if [ "$HAS_BLADE_ICONS" = "true" ]; then
                 mkdir -p "$ICONS_DIR"
               fi
@@ -444,21 +433,7 @@ jobs:
             else
               echo "wp acorn not available; skipping Acorn steps."
             fi
-          '
-      # Diagnostic #4
-      - name: Diagnostic — WAF after Acorn
-        if: needs.sanity-and-derive.outputs.app_env == 'live'
-        run: |
-          ssh serverpilot@${{ secrets.SERVER_IP }} '
-            BASE="${{ needs.sanity-and-derive.outputs.deploy_path }}"
-            echo "===== WAF AFTER ACORN ====="
-            if [ -f "$BASE/web/wp/wordfence-waf.php" ]; then
-              echo "WAF EXISTS"
-              ls -la "$BASE/web/wp/wordfence-waf.php"
-            else
-              echo "WAF MISSING"
-            fi
-          '
+          REMOTE_SCRIPT
 
       ############################################################
       # CLEAR WP ROCKET CACHE (LIVE / MASTER ONLY)
@@ -466,8 +441,9 @@ jobs:
       - name: Clear WP Rocket cache on live site
         if: needs.sanity-and-derive.outputs.app_env == 'live'
         run: |
-          ssh serverpilot@${{ secrets.SERVER_IP }} bash -lc '
+          ssh serverpilot@${{ secrets.SERVER_IP }} bash -s <<'REMOTE_SCRIPT'
             set -euo pipefail
+
             BASE="${{ needs.sanity-and-derive.outputs.deploy_path }}"
             cd "$BASE"
 
@@ -477,14 +453,14 @@ jobs:
             fi
 
             if wp help rocket clean >/dev/null 2>&1; then
-              echo "Clearing WP Rocket cache…"
+              echo "Clearing WP Rocket cache..."
               wp rocket clean --confirm
               echo "WP Rocket cache cleared."
             else
               echo "WP Rocket CLI command is unavailable; clearing through rocket_clean_domain()."
-              wp eval "if ( function_exists( \"rocket_clean_domain\" ) ) { rocket_clean_domain(); echo \"WP Rocket cache cleared.\\n\"; } else { fwrite( STDERR, \"WP Rocket cache API is unavailable.\\n\" ); exit( 1 ); }"
+              wp eval 'if ( function_exists( "rocket_clean_domain" ) ) { rocket_clean_domain(); echo "WP Rocket cache cleared.\n"; } else { fwrite( STDERR, "WP Rocket cache API is unavailable.\n" ); exit( 1 ); }'
             fi
-          '
+          REMOTE_SCRIPT
 
       ############################################################
       # FINALIZE — PERMISSIONS, DONE
