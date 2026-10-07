@@ -57,7 +57,7 @@
       "type": "package",
       "package": {
         "name": "wp-media/wp-rocket",
-        "version": "3.23.5",
+        "version": "3.23.5.1",
         "type": "wordpress-plugin",
         "dist": {
           "url": "gplv-plugins/wp-rocket.zip",
@@ -81,7 +81,7 @@
       "type": "package",
       "package": {
         "name": "woocommerce/woocommerce-shipping-fedex",
-        "version": "4.8.1",
+        "version": "4.8.2",
         "type": "wordpress-plugin",
         "dist": {
           "url": "gplv-plugins/woocommerce-shipping-fedex.zip",
